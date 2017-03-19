@@ -1,0 +1,17 @@
+<a class="btn btn-primary" href="/">Home</a>
+
+<form ng-submit="submit()" ng-controller="CreateCtrl">
+	<div class="form-group">
+		<label for='manufacturer'>Manufacturer:</label>
+		<input type="text" ng-model="manufacturer" name="username" class="form-control" placeholder="Manufacturer">
+	</div>	
+	<div class="form-group">
+		<label for='model'>Model:</label>
+		<input type="text" ng-model="model" class="form-control" placeholder="Model">
+	</div>
+	<div class="form-group">
+		<label for='engine'># of Engines:</label>
+		<input type="number" ng-model="engine" class="form-control" placeholder="# of Engines">
+	</div>
+	<input type="submit" value="Submit" class="btn btn-success">
+</form>
