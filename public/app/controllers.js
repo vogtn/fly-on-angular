@@ -2,12 +2,24 @@ angular.module("FlyApp")
 .controller("PlanesCtrl", ["$scope", "PlanesAPI", function($scope, PlanesAPI){
   $scope.title = "Look at all my planes!";
   $scope.planes = [];
-
-  PlanesAPI.getPlanes().then(function success(response){
-    $scope.planes = response.data;
-  }, function error(err){
-    console.log("Oh no", err);
-  })
+  $scope.filter;
+  $scope.$watch('filter', function(){
+    console.log($scope.filter);
+    if(!$scope.filter){
+      PlanesAPI.getPlanes($scope.filter).then(function success(response){
+        $scope.planes = response.data;
+      }, function error(err){
+        console.log("Oh no", err);
+      })
+    }else{
+      PlanesAPI.getPlane($scope.filter).then(function success(response){
+        console.log("success", response);
+        $scope.planes = response.data;
+      }, function error(err){
+        console.log("error", err);
+      })
+    }
+  });
 }])
 .controller("DetailCtrl", ["$scope", "$stateParams", "PlanesAPI", function($scope, $stateParams, PlanesAPI){
   $scope.plane = {};
