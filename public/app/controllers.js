@@ -35,16 +35,18 @@ angular.module("FlyApp")
     PlanesAPI.deletePlane($stateParams.id);
 }])
 
-.controller("CreateCtrl", ["$scope", "$stateParams", "PlanesAPI", function($scope, $stateParams, PlanesAPI){
+.controller("CreateCtrl", ["$scope","$location", "$stateParams", "PlanesAPI", function($scope, $location,  $stateParams, PlanesAPI){
     // $scope.myFunc = function () {
     //     console.log('itworks')
     // }
     $scope.submit = function() {
+        $location.path('/')
         console.log(this.engine);
         var plane = {
             "manufacturer": this.manufacturer,
             "model": this.model,
-            'engines': this.engine 
+            'engines': this.engine,
+            'url': this.url
         }
         PlanesAPI.addPlane(plane)
     }
